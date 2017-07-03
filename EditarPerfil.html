@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="JQ/angular.min.js"></script>
+    <script src="JQ/editarPerfil.js"></script>
+    <style>
+        #inferior {
+            bottom: 0;
+            height: 50px;
+            padding: 13px 0 4px;
+            position: fixed;
+            width: 100%;
+            z-index: 100%;
+            font-size: medium;
+        }
+        #inferior:hover {
+            width: 100%;
+            height: 95%;
+            background-color: #fff;
+            transition-property: height;
+            transition-duration: 0.5s, 0.5s, 0.5s;
+            transition-timing-function: linear;
+            transition-delay: 0s, 0.5s, 0.5s;
+        }
+        #load {
+    			bottom: 0;
+    			height: 100px;
+    			padding: 100% 0 100%;
+    			position: fixed;
+    			width: 100%;
+    			z-index: 100%;
+    			font-size: medium;
+    			background:rgba(0,0,0,0.5);
+    		}
+    </style>
+</head>
+
+<body ng-app="miapp">
+    <header class="bar bar-nav">
+        <a class="btn btn-link btn-nav pull-left" href="mapa.html"> <span class="icon icon-left-nav"></span>
+        </a>
+        <h1 class="title" align="left">Editar Perfil</h1>
+
+    </header>
+
+
+    <div class="content">
+        <div ng-controller="micontrolador">
+            <div ng-repeat="usuario in datos">
+                <ul class="table-view">
+                    <div >
+                        <li class="table-view-cell media">
+                            <div class="media-body">Nombres
+                                <input type="search" id="nombre" value="{{usuario.nombre}}" />
+
+                            </div>
+
+                        </li>
+                        <li class="table-view-cell media">
+                            <div class="media-body">Apellidos
+                                <input type="search" id="apellido" value="{{usuario.apellido}}" />
+
+                            </div>
+
+                        </li>
+                        <li class="table-view-cell media">
+                            <div class="media-body">Telefono Contacto
+                                <input type="tel" id="telefono" value="{{usuario.telefono}}" />
+
+                            </div>
+
+                        </li>
+                        <li class="table-view-cell media">
+                            <div class="media-body">E-Mail
+                                <input type="email" id="mail" value="{{usuario.correo}}" />
+
+                            </div>
+
+                        </li>
+                        <li class="table-view-cell media">
+                            <div class="media-body">Facebook
+                                <input type="search" id="facebook" value="{{usuario.facebook}}" />
+
+                            </div>
+
+                        </li>
+                        <li class="table-view-cell media">
+                            <div class="media-body">Twitter
+                                <input type="search" id="twitter" value="{{usuario.twiter}}" />
+
+                            </div>
+
+                        </li>
+
+                        <li class="table-view-cell media" >
+                            <a onclick="ocultar()">
+                                <div class="media-body">
+                                    <label style="font-weight:bold">Cambiar Contraseña</label>
+                                </div>
+                            </a>
+                        </li>
+						<li class="table-view-cell media" style="background:#ff8700; color:white; ">
+                            <a class="push-right" onclick="actualizaDatos()">
+                                <div class="media-body">
+                                    <label style="font-weight:bold">Actualizar Datos</label>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+
+
+    <div id="inferior" style="display: none;">
+        <ul class="table-view">
+            <li class="table-view-cell media">
+                <div class="media-body">
+					             <a class="btn btn-link btn-nav pull-right" onclick="ocultar()"> <span class="icon icon-close"></span>
+                    Cancelar</a>
+                    <p color="#ff8700">Seleccione y Cambie Contraseña</p>
+
+                </div>
+            </li>
+            <li class="table-view-cell media">
+                <div class="media-body">
+                    <label for="name" style="font-weight:bold">Contraseña Actual</label>
+                    <input type="password" id="contraActual" placeholder="Digite Su Contraseña Actual" required />
+                </div>
+            </li>
+            <li class="table-view-cell media">
+                <div class="media-body">
+                    <label for="name" style="font-weight:bold">Contraseña Nueva</label>
+                    <input type="password" id="contraNueva1" placeholder="Digite Su Contraseña Nueva" required />
+                </div>
+            </li>
+            <li class="table-view-cell media">
+                <div class="media-body">
+                    <label for="name" style="font-weight:bold">Repita Contraseña Nueva</label>
+                    <input type="password" id="contraNueva2" placeholder="Repita Su Contraseña Nueva" required />
+                </div>
+            </li>
+            <li class="table-view-cell media" style="background:#ff8700">
+                <a class="push-right" onclick="cambiarContra()">
+                    <div class="media-body">
+                        <label style="font-weight:bold">Guardar</label>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+ </div>
+ <div id="load" align="center" style="display: none;">
+   <img src="img/loadUdSobreRuedas.gif" >
+ </div>
+    <link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/pageslider.css" rel="stylesheet">
+    <script src="lib/pageslider.js"></script>
+    <script src="cordova.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="JQ/angular.min.js"></script>
+    <script src="JQ/editarPerfil.js"></script>
+    <style>
+        #inferior {
+            bottom: 0;
+            height: 50px;
+            padding: 13px 0 4px;
+            position: fixed;
+            width: 100%;
+            z-index: 100%;
+            font-size: medium;
+        }
+        #inferior:hover {
+            width: 100%;
+            height: 95%;
+            background-color: #fff;
+            transition-property: height;
+            transition-duration: 0.5s, 0.5s, 0.5s;
+            transition-timing-function: linear;
+            transition-delay: 0s, 0.5s, 0.5s;
+        }
+    </style>
+</head>
+
+<body ng-app="miapp">
+    <header class="bar bar-nav">
+        <a class="btn btn-link btn-nav pull-left" onclick="atras()"> <span class="icon icon-left-nav"></span>
+        </a>
+        <h1 class="title" align="left">Datos De Contacto</h1>
+
+    </header>
+
+
+    <div class="content">
+      <div class="card">
+        <div ng-controller="micontrolador">
+            <div ng-repeat="usuario in datos">
+                <ul class="table-view">
+                    <div >
+                      <li class="table-view-cell media"> <img class="media-object pull-left emp-pic" src="img/user.png">
+                        <div class="media-body"> {{usuario.nombre}}  {{usuario.apellido}}
+                            <p>{{usuario.codigoUD}}</p>
+                        </div>
+                    </li>
+
+                    <li class="table-view-cell media">
+                          <a href="tel:{{usuario.telefono}}" class="push-right"> <span class="media-object pull-left icon icon-call"></span>
+                              <div class="media-body"> Telefono De Contacto
+                                  <p>{{usuario.telefono}}</p>
+                              </div>
+                          </a>
+                      </li>
+
+                      <li class="table-view-cell media">
+                            <a href="sms:+{{usuario.telefono}}" class="push-right"> <span class="media-object pull-left icon icon-sms"></span>
+                                <div class="media-body"> Enviar Mensaje Texto
+                                    <p>{{usuario.telefono}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="table-view-cell media">
+                        <a href="mailto:{{usuario.correo}}" class="push-right"> <span class="media-object pull-left icon icon-mail"></span>
+                            <div class="media-body"> Email
+                                <p>{{usuario.correo}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="table-view-cell media">
+                    <a href="mailto:{{usuario.facebook}}" class="push-right"> <span class="media-object pull-left icon icon-mail"></span>
+                        <div class="media-body"> Facebook
+                            <p>{{usuario.facebook}}</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="table-view-cell media">
+                <a href="mailto:{{usuario.twiter}}" class="push-right"> <span class="media-object pull-left icon icon-mail"></span>
+                    <div class="media-body"> Twitter
+                        <p>{{usuario.twiter}}</p>
+                    </div>
+                </a>
+            </li>
+
+
+
+						<li class="table-view-cell media" style="background:#ff8700; color:white; ">
+                            <a class="push-right">
+                                <div class="media-body">
+                                    <label style="font-weight:bold">Ver Ruta Contacto</label>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+
+ </div>
+    <link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/pageslider.css" rel="stylesheet">
+    <script src="lib/pageslider.js"></script>
+    <script src="cordova.js"></script>
+</body>
+
+</html>

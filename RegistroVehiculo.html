@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="JQ/angular.min.js"></script>
+	<script src="JQ/registroRuedas.js"></script>
+</head>
+
+<body>
+	<header class="bar bar-nav">
+		<a class="btn btn-link btn-nav pull-left" href="mapa.html"> <span class="icon icon-left-nav"></span> </a>
+		<h1 class="title" align="left">Registro Vehiculo</h1> </header>
+	<div class="content">
+		<div>
+			<div>
+				<ul class="table-view">
+					<div>
+						<li class="table-view-cell media">
+							<div class="media-body">Descripción Vehículo
+								<input type="search" id="descripcion" placeholder="NickName de su Vehículo" /> </div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">Marca Vehículo
+								<input type="search" id="marca" placeholder="Marca de Vehículo" /> </div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">Color Vehículo
+								<input type="color" id="color" placeholder="Describa el Color Vehículo" /> </div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">Placa Vehículo
+								<input type="search" id="placa" placeholder="Placa Vehículo" /> </div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">Tipo Vehículo
+								<select type="select" name="select" id='tipo' required align="Center">
+									<option value="2">Bici</option>
+									<option value="3">Moto</option>
+									<option value="4">Carro</option>
+								</select>
+							</div>
+						</li>
+						<li class="table-view-cell media" style="background:#ff8700">
+							<a class="push-right" onclick="crearVheiculo()">
+								<div class="media-body">
+									<label style="font-weight:bold; color:white">Crear Vehiculo</label>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	<link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<link href="assets/css/pageslider.css" rel="stylesheet">
+	<script src="lib/pageslider.js"></script>
+	<script src="cordova.js"></script>
+</body>
+
+</html>

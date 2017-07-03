@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="JQ/angular.min.js"></script>
+	<script src="JQ/sugerencia.js"></script>
+</head>
+
+<body>
+	<header class="bar bar-nav">
+		<a class="btn btn-link btn-nav pull-left" href="mapa.html"> <span class="icon icon-left-nav"></span> </a>
+		<h1 class="title" align="left">Sugerencias</h1> </header>
+	<div class="content">
+		<div>
+			<div>
+				<ul class="table-view">
+					<div>
+						<li class="table-view-cell media">
+							<div class="media-body">Califique UD SobreRuedas
+								<select type="select" name="select" id='tipo' required align="Center">
+									<option value="1">Uno</option>
+									<option value="2">Dos</option>
+									<option value="3">Tres</option>
+									<option value="4">Cuatro</option>
+									<option value="5">Cuatro</option>
+								</select>
+							</div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">Observaciones
+								<input type="search" cols="30" rows="6" id="observacion" /> </div>
+						</li>
+						<li class="table-view-cell media">
+							<div class="media-body">
+								<p>Sus Comentarios Son Muy Importantes Para El Mejoramiento de la Aplicación</p> </div>
+						</li>
+						<li class="table-view-cell media" style="background:#ff8700">
+							<a class="push-right" onclick="crearVheiculo()">
+								<div class="media-body">
+									<label style="font-weight:bold; color:white">Enviar Sugerencia</label>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<link href="assets/css/pageslider.css" rel="stylesheet">
+	<script src="lib/pageslider.js"></script>
+	<script src="cordova.js"></script>
+</body>
+
+</html>

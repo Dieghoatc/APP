@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="JQ/angular.min.js"></script>
+	<script src="JQ/confirmaSol.js"></script>
+
+</head>
+
+<body ng-app="miapp">
+	<header class="bar bar-nav">
+		<a class="btn btn-link btn-nav pull-left" onclick="decideURL()"> <span class="icon icon-left-nav"></span> </a>
+		<h1 class="title" align="left">Usuarios Confirmados</h1>
+
+	</header>
+	<div class="bar bar-standard bar-header-secondary">
+		<input type="search" ng-model = 'busqueda' placeholder="Busqueda Por Nombre" /> </div>
+	<div class="content">
+		<div ng-controller="micontrolador">
+			<div ng-repeat="usuarios in ubicaciones">
+				<ul class="table-view">
+					<div ng-repeat="usuario in usuarios.usuarioUbicacion | filter : usuario.nombre = busqueda">
+						<li class="table-view-cell media">
+							<a class="push-right" href="detallePasajero.html?codigo={{usuario.usuario}}&latitudPartida={{usuario.latitudPartida}}&longitudPartida={{usuario.longitudPartida}}&puestoDisponibles={{usuario.puestoDisponibles}}&descripcionRuta={{usuario.descripcionRuta}}&horaPartida={{usuario.horaPartida}}&latitudDestino={{usuario.latitudDestino}}&longitudDestino={{usuario.longitudDestino}}&descripcionDestino={{usuario.descripcionDestino}}&tipoVehiculo={{usuario.tipoVehiculo}}&nombreUser={{usuario.nombreUser}}&desUbicacion={{usuario.desUbicacion}}&solicitud=2">
+								<img class="media-object pull-left" src="img/{{usuario.tipoVehiculo}}.png">
+								<div class="media-body"> {{usuario.nombreUser}}
+									<p>{{usuario.descripcionRuta}}</p>
+									<p>{{usuario.descripcionDestino}}</p>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+
+		</div>
+
+	<link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<link href="assets/css/pageslider.css" rel="stylesheet">
+	<script src="lib/pageslider.js"></script>
+	<script src="cordova.js"></script>
+</body>
+
+</html>

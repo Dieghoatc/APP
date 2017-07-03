@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="JQ/angular.min.js"></script>
+	<script src="JQ/ubicacionUser.js"></script>
+	<script src="JQ/filtros.js"></script>
+	<link href="CCS/busquedaAvanzada.css" rel="stylesheet">
+	<style>
+		#ver {
+			bottom: 0;
+			height: 60px;
+			padding: 13px 10px 4px;
+			position: fixed;
+			width: 100%;
+			z-index: 100%;
+		}
+		#ver:hover {
+      width: 100%;
+      height: 40%;
+      background-color: #ffff;
+      transition-property:  height;
+      transition-duration: 0.5s, 0.5s, 0.5s;
+      transition-timing-function:  linear;
+      transition-delay: 0s ,0.5s, 0.5s;
+   }
+
+	 #verFiltros {
+		 bottom: 0;
+		 height: 60px;
+		 padding: 13px 10px 4px;
+		 position: fixed;
+		 width: 100%;
+		 z-index: 100%;
+	 }
+	 #verFiltros:hover {
+		 width: 100%;
+		 height: 40%;
+		 background-color: #ffff;
+		 transition-property:  height;
+		 transition-duration: 0.5s, 0.5s, 0.5s;
+		 transition-timing-function:  linear;
+		 transition-delay: 0s ,0.5s, 0.5s;
+	}
+	#load {
+		bottom: 0;
+		height: 100px;
+		padding: 100% 0 100%;
+		position: fixed;
+		width: 100%;
+		z-index: 100%;
+		font-size: medium;
+		background:rgba(0,0,0,0.5);
+	}
+	</style>
+
+</head>
+
+<body ng-app="miapp" ng-controller="micontrolador">
+	<header class="bar bar-nav">
+		<a class="btn btn-link btn-nav pull-left" href="mapa.html"> <span class="icon icon-left-nav"></span> </a>
+		<h1 class="title" align="left">Lista de Usuarios Sobre Ruedas</h1>
+		<div onclick="ocultar()">
+			<a class="btn btn-link btn-nav pull-right" id="accionar"> <span class="icon icon-more-vertical"></span> </a>
+		</div>
+	</header>
+	<div class="bar bar-standard bar-header-secondary" >
+		<input type="search" ng-model = 'busqueda' placeholder = "Busqueda por Nombre" /> </div>
+	<div class="content">
+		<div >
+			<div ng-repeat="usuarios in ubicaciones">
+				<ul class="table-view">
+					<div ng-repeat="usuario in usuarios.usuarioUbicacion | filter : usuario.nombre = busqueda">
+						<li class="table-view-cell media">
+							<a class="push-right" href="detallePasajero.html?codigo={{usuario.usuario}}&latitudPartida={{usuario.latitudPartida}}&longitudPartida={{usuario.longitudPartida}}&puestoDisponibles={{usuario.puestoDisponibles}}&descripcionRuta={{usuario.descripcionRuta}}&horaPartida={{usuario.horaPartida}}&latitudDestino={{usuario.latitudDestino}}&longitudDestino={{usuario.longitudDestino}}&descripcionDestino={{usuario.descripcionDestino}}&tipoVehiculo={{usuario.tipoVehiculo}}&nombreUser={{usuario.nombreUser}}&desUbicacion={{usuario.desUbicacion}}&solicitud=0">
+								<img class="media-object pull-left" src="img/{{usuario.tipoVehiculo}}.png">
+								<div class="media-body"> {{usuario.nombreUser}}
+									<p>{{usuario.descripcionRuta}}</p>
+									<p>{{usuario.descripcionDestino}}</p>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<div id="ver" style="display: none;">
+			<ur></ur>
+                <ul class="table-view">
+                    <li class="table-view-cell media" style="background-color:#ff8700">
+                        <div class="media-body">
+                            <p align = "center" style="font-weight:bold; color:white">Oprima y Seleccione una Opción</p>
+                        </div>
+                    </li>
+                    <li class="table-view-cell media">
+                        <a  class="push-right" href="pasajero.html">
+                            <div class="media-body">
+								Refrescar Solicitudes
+                            </div>
+                        </a>
+                    </li>
+                    <li class="table-view-cell media">
+                        <a  class="push-right" href="SolicitudesPendientes.html?url=2">
+                            <div class="media-body">
+								Solicitudes Pendientes
+                            </div>
+                        </a>
+                    </li>
+                    <li class="table-view-cell media">
+                        <a  class="push-right" href="ConfirmaUsuarios.html?url=2">
+                            <div class="media-body" >
+								Solicitudes Confirmadas
+                            </div>
+                        </a>
+                    </li>
+										<li class="table-view-cell media">
+                        <a  class="push-right" onclick="filtros()">
+                            <div class="media-body" >
+								Filtro Avanzado
+                            </div>
+                        </a>
+                    </li>
+			</ul>
+            </div>
+						<div id="verFiltros" style="display: none;">
+							<ur></ur>
+							<ul class="table-view">
+									<li class="table-view-cell media" style="background-color:#ff8700">
+											<div class="media-body">
+													<p align = "center" style="font-weight:bold; color:white">Filtros Avanzados Para Busqueda</p>
+											</div>
+									</li>
+									<div class="range-slider">
+								  <input class="range-slider__range" type="range" value="100" min="0" max="500">
+								  <span class="range-slider__value">0</span>
+								</div>
+
+								<div class="range-slider">
+								<input class="range-slider__range" type="range" value="100" min="0" max="500">
+								<span class="range-slider__value">0</span>
+								</div>
+
+		</ul>
+</div>
+		</div>
+		<div id="load" align="center" style="display: none;">
+			<img src="img/loadUdSobreRuedas.gif" >
+		</div>
+	<link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+
+	<link href="assets/css/pageslider.css" rel="stylesheet">
+	<script src="lib/pageslider.js"></script>
+	<script src="cordova.js"></script>
+</body>
+
+</html>

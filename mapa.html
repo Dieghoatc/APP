@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Geolocation</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="utf-8">
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			padding: inherit;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			left: 0px;
+		}
+	</style>
+	<link rel="stylesheet" href="CCS/menu.css" />
+	<link rel="stylesheet" href="CCS/style.css" />
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initMap&libraries=places" async defer>
+		//v=3.exp&callback=initMap async defer key=AIzaSyB_qgFi0PLU78P54jPBmxMWbJ5os8MgIHA
+		//api/js?v=3.exp&callback=initMap"
+	</script>
+	<style>
+		#inferior {
+			bottom: 0;
+			height: 50px;
+			padding: 13px 0 4px;
+			position: fixed;
+			width: 100%;
+			z-index: 100%;
+			font-size: medium;
+		}
+
+		#inferior:hover {
+			width: 100%;
+			height: 75%;
+			background-color: #ffff;
+			transition-property: height;
+			transition-duration: 0.5s, 0.5s, 0.5s;
+			transition-timing-function: linear;
+			transition-delay: 0s, 0.5s, 0.5s;
+		}
+		#menuBack {
+			bottom: 0;
+			height: 100px;
+			padding: 100% 0 100%;
+			position: fixed;
+			width: 100%;
+			z-index: 100%;
+			font-size: medium;
+			background:rgba(0,0,0,0.5);
+		}
+		#load {
+			bottom: 0;
+			height: 100px;
+			padding: 100% 0 100%;
+			position: fixed;
+			width: 100%;
+			z-index: 100%;
+			font-size: medium;
+			background:rgba(0,0,0,0.5);
+		}
+
+	</style>
+	<script src="JQ/GoogleMaps.js">
+	</script>
+</head>
+
+<body>
+	<div id="map"></div>
+	<header>
+		<div class="menu_bar"> <a href="#" class="bt-menu" onclick="verMenuBack()"><span class="icon-list2"></span>
+			UD Sobre Ruedas</a> </div>
+		<nav>
+			<ul class="table-view">
+				<li class="table-view-cell media">
+					<a class="push-caret" href="EditarPerfil.html?decisor=1"> <img class="media-object pull-left" src="img/user.png">
+						<div class="media-body" id="usuario"> <span class="icon-earth"></span>
+							<label style="font-weight:bold">Editar Perfil</label>
+						</div>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a class="push-right" href="mapa.html">
+						<div class="media-body"> <span class="icon-earth"></span>
+							<label style="font-weight:bold">Inicio</label>
+							<p>Elija y Describa Su Forma de Viaje</p>
+						</div>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a class="push-right" href="RegistroVehiculo.html">
+						<div class="media-body"> <span class="icon-leaf"></span>
+							<label style="font-weight:bold">Registro Vehiculo</label>
+						</div>
+						<p>Registre vehiculo a utilizar en la App</p>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a class="push-right" href="SolicitudesPendientes.html?url=1">
+						<div class="media-body"> <span class="icon-bell"></span>
+							<label style="font-weight:bold">Solicitudes Pendientes</label>
+						</div>
+						<p>Gestione las Solicitudes Realizadas</p>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a class="push-right" href="ConfirmaUsuarios.html?url=1">
+						<div class="media-body"> <span class="icon-bell"></span>
+							<label style="font-weight:bold">Solicitud Confirmada</label>
+						</div>
+						<p>Consulte las Solicitudes Confirmadas</p>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a class="push-right" href="Sugerencias.html">
+						<div class="media-body"> <span class="icon-mail"></span>
+							<label style="font-weight:bold">Sugerencias</label>
+						</div>
+						<p>Envie sus observaciones y/o peticiones</p>
+					</a>
+				</li>
+				<li class="table-view-cell media">
+					<a href="index.html">
+						<div class="media-body">
+							<label style="font-weight:bold">Cerrar Sesión</label>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<body>
+		<!-- Barra de texto donde se escribe el lugar deseado y el lugar es consultado en la libreria de google maps -->
+		<div>
+			<input type="search" id="search" placeholder="¿A Donde Vas?" style="margin-top:80px; margin-left:30px; border:1px; background:white; position:relative; width:300px; height:42px; " />
+		</div>
+	</body>
+	<!-- menu y formulario que aparece luego de sellecionar el lugar a donde se desea ir -->
+	<div id="inferior" style="color:black; visibility:hidden;">
+		<ul class="table-view">
+			<li class="table-view-cell media">
+				<div class="media-body">
+					<p align="center">Oprima y elija su modo de viaje</p>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<div class="media-body">
+					<label for="name" style="font-weight:bold">Descripcion ruta</label>
+					<input type="search" id="ruta" placeholder="Breve descripción de su ruta" required /> </div>
+			</li>
+			<li class="table-view-cell media">
+				<div class="media-body">
+					<label style="font-weight:bold">Modo de viaje</label>
+					<select name="select" id='modoviaje' required align="Center">
+						<option value="1">Pie</option>
+						<option value="2">Bici</option>
+						<option value="3">Moto</option>
+						<option value="4">Carro</option>
+					</select>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<div class="media-body">
+					<label for="name" style="font-weight:bold">Hora de partida</label>
+					<input type="time" name="time" id="hora" required /> </div>
+			</li>
+			<li class="table-view-cell media">
+				<div class="media-body">
+					<label style="font-weight:bold">Puestos Disponibles</label>
+					<select type ="search" name="select" id='puestos' required align="Center">
+						<option value="1">Uno</option>
+						<option value="2">Dos</option>
+						<option value="3">Tres</option>
+						<option value="4">Cuatro</option>
+					</select>
+				</div>
+			</li>
+			<li class="table-view-cell media" style="background:#ff8700">
+				<a class="push-right" onclick="enviarPosicion()">
+					<div class="media-body">
+						<label style="font-weight:bold">Enviar</label>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="menuBack" class="menu_bar" style="display: none;">
+		<a class="bt-menu" onclick="verMenuBack()">
+	</div>
+	<div id="load" align="center" style="display: none;">
+		<img src="img/loadUdSobreRuedas.gif" >
+	</div>
+	<link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<link href="assets/css/pageslider.css" rel="stylesheet">
+	<script src="lib/pageslider.js"></script>
+	<script type="text/javascript" src="JQ/menu-latest.js"></script>
+	<script type="text/javascript" src="JQ/menu.js"></script>
+	<script src="cordova.js"></script>
+</body>
+
+</html>
